@@ -174,3 +174,36 @@ def createuser(username: str, password: str) -> None:
     with open(users_file, "a", encoding="utf-8") as f:
         f.write(f"{username}:{hashed_password}\n")
     print(f"[green]User '{username}' created successfully.[/green]")
+
+def authenticateuser(username: str, password: str) -> bool:
+    """
+    Authenticate a user by checking users.txt.
+
+    Parameters
+    ----------
+    username : str
+        The username to authenticate.
+    password : str
+        The password to authenticate.
+
+    Returns
+    -------
+    bool
+        True if authentication is successful, False otherwise.
+    """
+    users_file = "users.txt"
+    import hashlib
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    if not os.path.exists(users_file):
+        print("[red]No users found. Please create a user first.[/red]")
+        return False
+
+    with open(users_file, "r", encoding="utf-8") as f:
+        for line in f:
+            stored_username, stored_hashed_password = line.strip().split(":", 1)
+            if stored_username == username and stored_hashed_password == hashed_password:
+                activeuser = username  # Set the active user
+                return True
+
+    print("[red]Authentication failed. Invalid username or password.[/red]")
+    return False

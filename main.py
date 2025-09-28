@@ -54,9 +54,24 @@ print("[red]Loading BarkEngine...[red]")
 loading_bar(120, delay=0.05)
 print("[green]Loading Complete![green]")
 print(" ")
-makenewuser = input("Create new user? (y/n): ")
-if makenewuser.lower() == "y":
-    newusername = input("Enter new username: ")
-    newpassword = input("Enter new password: ")
-    dependencies.createuser(newusername, newpassword)
-    
+makenewuserorsignin = input("Create new user or sign in? (c/s): ")
+if makenewuserorsignin == "s":
+    username = input("Enter username: ")
+    password = input("Enter password: ")
+    if dependencies.authenticateuser(username, password):
+        print(f"Welcome back, [green]{username}[/green]!")
+    else:
+        print("[red]Authentication failed! Exiting...[/red]")
+        sys.exit(1)
+elif makenewuserorsignin == "c":
+    makenewuser = input("Create new user? (y/n): ")
+    if makenewuser == "y":
+        newusername = input("Enter username: ")
+        newpassword = input("Enter password: ")
+        dependencies.create_user(newusername, newpassword)
+        print(f"User [green]{newusername}[/green] created!")
+    else:
+        print("Skipping user creation...")
+
+
+
