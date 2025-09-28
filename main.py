@@ -1,7 +1,7 @@
 import dependencies
 import os
 from modstuff import load_mods_from_folder
-from rich import print
+from rich import print # type: ignore
 import subprocess
 import ui1
 

@@ -1,4 +1,4 @@
-from rich import print
+from rich import print # type: ignore
 import os
 import time
 from pathlib import Path
