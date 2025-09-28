@@ -3,6 +3,7 @@ import os
 from modstuff import load_mods_from_folder
 from rich import print
 import subprocess
+import ui1
 
 # Decide whether to disable mod loading
 if dependencies.CONFIG.get("disablemodload"):
@@ -54,6 +55,8 @@ print("[red]Loading BarkEngine...[red]")
 loading_bar(120, delay=0.05)
 print("[green]Loading Complete![green]")
 print(" ")
+
+# User authentication (TOTTAlly secure and not at all dodgey :D)
 makenewuserorsignin = input("Create new user or sign in? (c/s): ")
 if makenewuserorsignin == "s":
     username = input("Enter username: ")
@@ -75,3 +78,4 @@ elif makenewuserorsignin == "c":
 
 
 
+ui1.secondarythingmabobby()

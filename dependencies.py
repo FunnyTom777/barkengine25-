@@ -173,6 +173,7 @@ def createuser(username: str, password: str) -> None:
     hashed_password = hashlib.sha256(password.encode()).hexdigest()
     with open(users_file, "a", encoding="utf-8") as f:
         f.write(f"{username}:{hashed_password}\n")
+    activeuser = username  # Set the active user
     print(f"[green]User '{username}' created successfully.[/green]")
 
 def authenticateuser(username: str, password: str) -> bool:
