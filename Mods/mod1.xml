@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Mod Configuration File – “mod.xml”
+
+   ─────────────────────────────────────────────────────────────────────
+   What you need to know
+   ─────────────────────────────────────────────────────────────────────
+   • The file is split into a handful of logical sections.
+   • Every element that contains user‑supplied data is surrounded by a
+     comment block that explains the accepted format.
+   • Optional elements are marked with (optional).  
+   • If you need to add custom data for a particular sub‑system,
+     simply create a new element under the relevant section.
+-->
+<mod>
+
+    <modInfo>
+        <!-- Unique identifier (no spaces, camelCase) -->
+        <modId>superEngineMod</modId>
+
+        <!-- Human‑readable name that appears in UI -->
+        <name>Super Engine Mod</name>
+
+        <!-- A short tagline or slogan (optional) -->
+        <tagline>More power, more thrill.</tagline>
+
+        <!-- Full author name or team -->
+        <author>Jane Doe</author>
+
+        <!-- Mod version following Semantic Versioning -->
+        <version>1.3.0</version>
+
+        <!-- Short description shown in the mod list -->
+        <description>
+            Adds a high‑performance engine with adjustable power curves,
+            optional turbo, and a realistic fuel consumption model.
+        </description>
+
+        <!-- URL that points to the official mod page or repo -->
+        <modPage>https://github.com/janedoe/super-engine-mod</modPage>
+    </modInfo>
+
+    <compatibility>
+        <!-- Minimum engine/game version required -->
+        <minEngine>4.2.0</minEngine>
+
+        <!-- Optional: maximum version (leave blank for “any”) -->
+        <maxEngine></maxEngine>
+
+        <!-- List of other mods this one depends on -->
+        <dependencies>
+            <dependency>baseCarKit</dependency>
+            <dependency>advancedSuspension</dependency>
+        </dependencies>
+    </compatibility>
+
+    <assets>
+        <!-- Path to the icon used in the mod manager -->
+        <icon>assets/icon.png</icon>
+
+        <!-- Texture packs, models, etc. – relative to the mod folder -->
+        <textures>
+            <texture>assets/textures/engine_front.png</texture>
+            <texture>assets/textures/engine_back.png</texture>
+        </textures>
+
+        <!-- Optional sound files -->
+        <sounds>
+            <engineIdle>assets/sounds/idle.wav</engineIdle>
+            <engineRev>assets/sounds/rev.wav</engineRev>
+        </sounds>
+    </assets>
+
+    <engine>
+        <!-- Base horsepower (numeric, integer) -->
+        <hp>350</hp>
+
+        <!-- Torque in Nm (numeric, integer) -->
+        <torque>400</torque>
+
+        <!-- Weight of the engine in kilograms (numeric) -->
+        <weight>150</weight>
+
+        <!-- Fuel type – one of gasoline, diesel, electric, hybrid -->
+        <fuelType>gasoline</fuelType>
+
+        <!-- Fuel consumption: liters per 100 km (numeric, float) -->
+        <fuelEfficiency>8.5</fuelEfficiency>
+
+        <!-- Turbocharger support (boolean) -->
+        <turbo>yes</turbo>
+
+        <!-- If turbo, maximum boost pressure in bar -->
+        <turboBoost>2.2</turboBoost>
+
+        <!-- Optional: configurable power curve data -->
+        <powerCurve>
+            <!-- Each entry is: rpm, multiplier -->
+            <point rpm="3000" multiplier="1.0"/>
+            <point rpm="6000" multiplier="1.15"/>
+            <point rpm="9000" multiplier="1.30"/>
+        </powerCurve>
+    </engine>
+
+    <!-- Optional vehicle‑wide adjustments -->
+    <vehicle>
+        <!-- Adjust overall weight multiplier for the vehicle -->
+        <weightMultiplier>1.05</weightMultiplier>
+
+        <!-- Adjust engine sound pitch -->
+        <soundPitch>1.0</soundPitch>
+    </vehicle>
+
+    <customData>
+        <!-- This is a catch‑all node for mod‑specific data.
+             The mod loader will pass the entire XML subtree
+             to the scripting engine for consumption. -->
+    </customData>
+</mod>
