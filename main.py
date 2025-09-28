@@ -53,4 +53,10 @@ print(" ")
 print("[red]Loading BarkEngine...[red]")
 loading_bar(120, delay=0.05)
 print("[green]Loading Complete![green]")
-print("Testing")
+print(" ")
+makenewuser = input("Create new user? (y/n): ")
+if makenewuser.lower() == "y":
+    newusername = input("Enter new username: ")
+    newpassword = input("Enter new password: ")
+    dependencies.createuser(newusername, newpassword)
+    

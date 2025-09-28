@@ -154,3 +154,23 @@ def _parse_config(path: str) -> dict:
 
 # Publicly expose the configuration once, at import time
 CONFIG = _parse_config(CONFIG_FILE)
+
+def createuser(username: str, password: str) -> None:
+    """
+    Create a new user by appending to users.txt.
+
+    encode the password using sha Hashing and then store it in users.txt
+
+    Parameters
+    ----------
+    username : str
+        The username for the new user.
+    password : str
+        The password for the new user.
+    """
+    users_file = "users.txt"
+    import hashlib
+    hashed_password = hashlib.sha256(password.encode()).hexdigest()
+    with open(users_file, "a", encoding="utf-8") as f:
+        f.write(f"{username}:{hashed_password}\n")
+    print(f"[green]User '{username}' created successfully.[/green]")
