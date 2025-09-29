@@ -1,0 +1,6 @@
+# Maps chat commands to real functions in game.py
+sup: sup
+addmoney: addmoney
+takemoney: takemoney
+save: savegame
+load: loadgame

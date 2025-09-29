@@ -1,19 +1,2 @@
-disablemodload = false
-
-# Motor Town Configeration!:
-# config.yaml
-
-application:
-  name: "MotorTown.exe"          # the EXE you want to cheat in
-
-# Pointer definitions – add as many as you need
-pointers:
-  health:
-    module: "GameModule.dll"     # the module that contains the base pointer
-    offsets: [0x1A2B3C, 0x10, 0x8]   # chain: base + 0x1A2B3C → *ptr → +0x10 → *ptr → +0x8
-  ammo:
-    module: "GameModule.dll"
-    offsets: [0x1A2B3C, 0x20]
-  speed:
-    module: "MotorTown.exe"
-    offsets: [0x0040ABCD]         # single level – no pointer deref
+disablemodload: false
+SAVE_FILE: savegame1.yaml
