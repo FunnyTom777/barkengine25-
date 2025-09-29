@@ -1,4 +1,4 @@
-import yaml
+import yaml # type: ignore
 from pathlib import Path
 
 # Path to the manifest file (shared with barkengine25)

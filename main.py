@@ -3,7 +3,6 @@ import os
 from modstuff import load_mods_from_folder
 from rich import print # type: ignore
 import subprocess
-import ui1
 
 # Decide whether to disable mod loading
 if dependencies.CONFIG.get("disablemodload"):
@@ -76,6 +75,5 @@ elif makenewuserorsignin == "c":
     else:
         print("Skipping user creation...")
 
-
-
-ui1.secondarythingmabobby()
+# Start the UI
+subprocess.run([sys.executable, "ui3.py"])

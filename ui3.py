@@ -1,5 +1,5 @@
-import dearpygui.dearpygui as dpg
-import yaml
+import dearpygui.dearpygui as dpg # type: ignore
+import yaml # type: ignore
 import importlib
 import os
 import json
@@ -16,8 +16,10 @@ SETTINGS_FILE = "ui_settings.json"
 DEFAULT_SETTINGS = {
     "gui_scale": 1.0,
     "theme": "Dark",
-    "window_width": 800,
-    "window_height": 600
+    "window_width": 1280,
+    "window_height": 720,
+    "chat_width": 400,
+    "chat_height": 200
 }
 
 def load_settings():
@@ -132,10 +134,21 @@ def main():
         dpg.add_button(label="Reset to Default", callback=reset_settings)
         dpg.add_button(label="Close", callback=lambda: dpg.hide_item("settings_window"))
 
-    # Create main window
-    with dpg.window(label="Chat/Console", width=settings["window_width"]-20,
-                   height=settings["window_height"]-20, pos=[10, 10],
-                   no_close=True, no_move=True):
+    # Create main window - positioned in the bottom-right corner
+    chat_width = settings.get("chat_width", 400)  # default 400 if not set
+    chat_height = settings.get("chat_height", 200)  # default 200 if not set
+    
+    # Calculate position to place window in bottom-right corner
+    window_pos = [
+        settings["window_width"] - chat_width - 20,  # 20px padding from right
+        settings["window_height"] - chat_height - 20  # 20px padding from bottom
+    ]
+    
+    with dpg.window(label="Chat/Console", 
+                   width=chat_width,
+                   height=chat_height, 
+                   pos=window_pos,
+                   no_close=True):
         
         # Add chat window with scrolling
         with dpg.child_window(width=-1, height=-60, tag="chat_window"):
@@ -152,12 +165,24 @@ def main():
     dpg.show_viewport()
 
     # Set up window resize handling
-    def save_window_size(sender, app_data):
-        settings["window_width"] = app_data[0]
-        settings["window_height"] = app_data[1]
+    def handle_viewport_resize(sender, app_data, user_data):
+        settings["window_width"] = dpg.get_viewport_width()
+        settings["window_height"] = dpg.get_viewport_height()
         save_settings(settings)
         
-    dpg.set_viewport_resize_callback(save_window_size)
+        # Update chat window position
+        chat_width = settings.get("chat_width", 400)
+        chat_height = settings.get("chat_height", 200)
+        new_pos = [
+            settings["window_width"] - chat_width - 20,
+            settings["window_height"] - chat_height - 20
+        ]
+        
+        # Make sure the window exists before trying to move it
+        if dpg.does_item_exist("Chat/Console"):
+            dpg.set_item_pos("Chat/Console", new_pos)
+        
+    dpg.set_viewport_resize_callback(handle_viewport_resize)
 
     # Main loop
     while dpg.is_dearpygui_running():

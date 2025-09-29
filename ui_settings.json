@@ -1,6 +1,8 @@
 {
   "gui_scale": 1.0,
   "theme": "Dark",
-  "window_width": 800,
-  "window_height": 600
+  "window_width": 807,
+  "window_height": 534,
+  "chat_width": 400,
+  "chat_height": 200
 }

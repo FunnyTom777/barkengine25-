@@ -1,7 +1,7 @@
 
 
 # BarkEngine25 Control Panel using DearPyGui
-import dearpygui.dearpygui as dpg
+import dearpygui.dearpygui as dpg # type: ignore
 import os
 import dependencies
 import modstuff
