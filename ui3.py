@@ -115,7 +115,7 @@ def toggle_settings_window(sender, app_data):
 def main():
     # Initialize Dear PyGui
     dpg.create_context()
-    dpg.create_viewport(title="Game Console", width=settings["window_width"], height=settings["window_height"])
+    dpg.create_viewport(title="Game Console", width=1000, height=700)
     dpg.setup_dearpygui()
 
     # Set up the theme

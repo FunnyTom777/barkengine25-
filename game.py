@@ -55,3 +55,8 @@ def loadgame():
             currentmoney = data.get("currentmoney", 0)
             return data
     return {}
+
+def handle_chat_message(message):
+    """Handle regular chat messages (non-commands)"""
+    # You can add any chat processing logic here
+    # For now, we'll just echo back the message
